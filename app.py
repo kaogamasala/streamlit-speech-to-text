@@ -1,12 +1,25 @@
 import os
 
 from google.cloud import speech
+from google.cloud import storage as gcs
 #import io
 
 import streamlit as st
 
 #環境変数
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'seacret.json' 
+#ローカル
+#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Key/service_account.json'
+
+bucket_name = "speechtotext20210801"
+fname = "service_account.json"
+project_name = "Speech-to-text-20210801
+
+client = gcs.Client(project_name)
+bucket = client.get_bucket(bucket_name)
+blob = gcs.Blob(fname, bucket)
+service_account = blob.download_as_string()
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = service_account
+
 
 # speech-to-text
 def transcribe_file(content, lang='日本語'):
