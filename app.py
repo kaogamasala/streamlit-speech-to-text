@@ -12,7 +12,7 @@ import streamlit as st
 
 bucket_name = "speechtotext20210801"
 fname = "service_account.json"
-project_name = "Speech-to-text-20210801
+project_name = "Speech-to-text-20210801"
 
 client = gcs.Client(project_name)
 bucket = client.get_bucket(bucket_name)
